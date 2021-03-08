@@ -26,3 +26,8 @@ class Praia:
 
     def add_camp(self):
       self._num_campeonatos += 1
+
+    def __str__(self):
+      return f'''Nome: {self._nome}
+Num de campeonatos: {self._num_campeonatos}
+Nome do país: {self._pais.nome}\n'''
