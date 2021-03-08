@@ -71,28 +71,36 @@ while resp != 'N' and resp != 'NÃO':
           7 - MAIOR E MENOR IDADE
           8 - REGISTRO DE CAMPEONATOS
           0 - SAIR\n''')
-          
+
+
     if (flag == '1'): #Cadastra um surfista
-      if(acabou == False):  
-        nome = input('Nome: ').title()
-        idade = input('Idade: ')
-        qtde_pranchas = int(input('Digite a quantidade de pranchas:'))
-        lista_pranchas = []
+      if(acabou == False):
+        try:
+          nome = input('Nome: ').title()
+          idade = input('Idade: ')
+          qtde_pranchas = int(input('Digite a quantidade de pranchas:'))
+          lista_pranchas = []
 
-        for i in range(qtde_pranchas):
-          marca = input('Digite a marca: ').title()
-          comprimento = float(input('Digite o comprimento: '))
-          cor = input('Digite a cor: ').title()
-          valor = float(input('Digite a valor: '))
+          for i in range(qtde_pranchas):
+            marca = input('Digite a marca: ').title()
+            comprimento = float(input('Digite o comprimento: '))
+            cor = input('Digite a cor: ').title()
+            valor = float(input('Digite a valor: '))
 
-          pr1 = Prancha(marca, comprimento, cor, valor, EUA)
-          lista_pranchas.append(pr1)
+            pr1 = Prancha(marca, comprimento, cor, valor, EUA)
+            lista_pranchas.append(pr1)
 
-        sx = Surfista(nome, idade, lista_pranchas, [c1])
-        lst_surfistas.append(sx)
+          sx = Surfista(nome, idade, lista_pranchas, [c1])
+          lst_surfistas.append(sx)
+
+        except ValueError:
+          print('Valor inválido digitado.')
+        except:
+          print('Algo ocorreu errado.')
+
+
       else:
         print('O campeonato já acabou.')
-
 
 
     elif (flag == '2'): #Decide o campeão do campeonato atual
@@ -111,31 +119,37 @@ CAMPEÃO MUNDIAL DE SURF: [{c1.campeao.nome}]
         print('Este campeonato já acabou!')
         print('Resultado: ')
         print(c1.registro_campeonato())
-    
+
+
     elif (flag == '3'): #escolhe o registro do surfista c1
       print('Digite o nome surfista que deseja ver:')
       for i in campeonatos[-1].surfistas: 
         print(f'# {i.nome}') 
       
       nome_surf = (input('')).title()
-      s = encontre_surfista(nome_surf, lst_surfistas)
-      print(s)
-      print(s.str_campeonatos())
+      try:
+        s = encontre_surfista(nome_surf, lst_surfistas)
+        print(s)
+        print(s.str_campeonatos())
+      except:
+          print('Nome inválido.')
+
 
     elif (flag == '4'): #imprime o total ganho
-      try:
         print('Digite o nome do surfista: ')
         for i in c1.surfistas:
           print(f'# {i.nome}')
-        
+
         surfista = input().title()
 
-        WIN = encontre_surfista(surfista, lst_surfistas)
-        print(f'''{'*' * 35}
+        try:
+          WIN = encontre_surfista(surfista, lst_surfistas)
+          print(f'''{'*' * 35}
 TOTAL GANHO POR {WIN.nome}:[R${WIN.total_ganho()}]
 {'*' * 35}''')
-      except:
-        print('Nome inválido.')
+        except:
+          print('Nome inválido.')
+
 
     elif(flag == '5'): #Retorna as praias com o n de campeonatos maior
       qtde_camp = int(input('Quantidade de campeonatos: '))
@@ -153,6 +167,7 @@ TOTAL GANHO POR {WIN.nome}:[R${WIN.total_ganho()}]
         print(f'''Nome do surfista: {surfista.nome}
 {surfista.pranchas_marca(marca)}''')
 
+
     elif(flag == '7'):
       print('###MAIOR E MENOR IDADE###')
       campeonatos_ganhos = ''
@@ -166,11 +181,14 @@ TOTAL GANHO POR {WIN.nome}:[R${WIN.total_ganho()}]
           campeonatos_ganhos += f'{i} '
 
       if(campeonatos_ganhos != ''):
-        print(f'Escolha um campeonato ganho: ',campeonatos_ganhos)
-        nome_camp = input()
-        camp = encontre_campeonato(nome_camp, campeonatos)
-        maior_idade = camp.maior_idade()
-        menor_idade = camp.menor_idade()
+        try:
+          print(f'Escolha um campeonato ganho: ',campeonatos_ganhos)
+          nome_camp = input()
+          camp = encontre_campeonato(nome_camp, campeonatos)
+          maior_idade = camp.maior_idade()
+          menor_idade = camp.menor_idade()
+        except:
+          print('Nome de campeonato inválido.')
 
         string_resp += f'''Maior idade: {maior_idade}
 Menor idade: {menor_idade}'''
@@ -195,5 +213,6 @@ Menor idade: {menor_idade}'''
     premio = float(input('Digite o prêmio: '))
     c1 = Campeonato(nome_camp, praia_camp, premio, lst_surfistas)
     campeonatos.append(c1)
+
 
 print('Fim do programa.')

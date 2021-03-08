@@ -3,19 +3,17 @@ from Prancha import Prancha
 from Praia import Praia
 from Pais import Pais
 
-class noChampionException(Exception):
-  def __init__(mensagem):
-    return super.__str__(mensagem)
-
 class Campeonato:
   def __init__(self, nome_campeonato, praia, premio, surfistas = [], campeao = None):
     self._nome_do_campeonato = nome_campeonato
-    self._campeao = campeao
     self._praia = praia
     self._premio = premio
     self._surfistas = surfistas 
     self._praia.add_camp()
     self.registro_participantes()
+    self._campeao = campeao
+    if(self._campeao != None):
+        self._campeao.add_premio(self._premio)
 
   def registro_participantes(self):
     for surfista in self._surfistas:
@@ -61,15 +59,8 @@ class Campeonato:
       self._surfistas.append(novo_surfista)
       novo_surfista.add_campeonato(self)
 
-  def remover_surfistas(self, surfista):
-        # acrescentar exceção se a lista estiver vazia
-      for i in range(0, len(self._surfistas), 1):
-          if(self._surfistas[i] == surfista):
-              self._surfistas.pop(i)
-              break
 
   def menor_idade(self):
-        #acrescentar exceção se a lista estiver vazia
     menor = self._surfistas[0].idade
 
     for i in self._surfistas:
