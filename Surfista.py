@@ -81,26 +81,3 @@ class Surfista:
 IDADE: {self._idade} anos
 PRANCHA(S): 
 {prancha}'''
-
-
-if __name__ == "__main__":
-    #PRANCHAS
-    pr1 = Prancha('Y', 2.1, 'Vermelho e branco', 432.5, 'Africa do Sul')
-    pr2 = Prancha("Y", 2.34, "Azul e verde", 430.0, 'Portugal')
-    pr3 = Prancha("Z", 2.0, "Verde", 400.0, 'Brasil')
-
-    #SURFISTAS
-    s1 = Surfista('Douglas', 33)
-    s2 = Surfista('Amanda', 25)
-    
-    s1.add_prancha(pr1) 
-    s2.add_prancha(pr2) #s1.add_campeonato('y')
-    s2.add_prancha(pr3)
-
-    print(s1)
-    '''
-    marca = input('Marca da prancha: ').upper()
-    print(s2.pranchas_marca(marca))
-    '''
-    
-

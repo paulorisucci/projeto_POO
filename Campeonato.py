@@ -95,26 +95,3 @@ CAMPEÃO: {self._campeao.nome}
 
   def __str__(self):
     return f'''{self._nome_do_campeonato}'''
-
-if(__name__ == '__main__'):
-
-  s1 = Surfista('Jonathan', 20)
-  s2 = Surfista('Dio', 21)
-
-  paisinho = Pais('Brasil', 'Portugues')
-  prainha = Praia('COPABANA', 30, paisinho )
-
-  c1 = Campeonato('Jojo\'s tournament', prainha, 500000, [s1, s2], s2)
-
-  s1.add_campeonato(c1)
-  s2.add_campeonato(c1)
-
-  print(c1)
-
-  #print(s2.campeonatos)
-
-  print(c1.menor_idade())
-  
-  print(c1.maior_idade())
-  print(s1)
-  print(s2)

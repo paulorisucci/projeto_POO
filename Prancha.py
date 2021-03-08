@@ -45,10 +45,3 @@ COR: {self._cor}
 VALOR: R$ {float(self._valor)}
 FABRICAÇÂO: {self._fabricacao.nome}
 '''
-
-if __name__ == "__main__":
-    pr1 = Prancha('Boa', 2.1, 'Vermelho e branco', 432.5, 'Africa do Sul')
-    pr2 = Prancha("Não tão boa", 2.34, "Azul e verde", 430.0, 'Portugal')
-    
-    print(pr1)
-    print(pr2)
