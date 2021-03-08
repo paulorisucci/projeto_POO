@@ -49,7 +49,7 @@ class Pais:
   def __str__(self):
     nomes = ''
     for i in self._praias:
-      nomes += f'#{i.nome}# '
+      nomes += f'#{i.nome}'
 
     return f'''NOME: {self._nome}
 LINGUA: {self._lingua}

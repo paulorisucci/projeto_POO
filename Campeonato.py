@@ -91,7 +91,7 @@ PRAIA: {self._praia.nome}
 PRÊMIO: {self._premio}
 PARTICIPANTES: {nomes}
 CAMPEÃO: {self._campeao.nome} 
------------------------------'''#Excessão para colocar None
+-----------------------------'''
 
   def __str__(self):
     return f'''{self._nome_do_campeonato}'''

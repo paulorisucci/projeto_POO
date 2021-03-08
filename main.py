@@ -44,7 +44,7 @@ s1 = Surfista('Paulo Elias', 20, [pr1, pr2])
 s2 = Surfista('Pedrinho', 19, [pr1])
 lst_surfistas = [s1, s2]
 
-cx = Campeonato('CAMPEONATO ANTERIOR', praia0, 10000, lst_surfistas, s2)
+cx = Campeonato('CAMPEONATO ANTERIOR', praia0, 10000, [s1, s2], s2)
 campeonatos.append(cx)
 
 c1 = Campeonato('THE GREAT CHAMPIONSHIP OF SURF', praia1, 200000,lst_surfistas)
@@ -77,7 +77,7 @@ while resp != 'N' and resp != 'NÃO':
       if(acabou == False):
         try:
           nome = input('Nome: ').title()
-          idade = input('Idade: ')
+          idade = int(input('Idade: '))
           qtde_pranchas = int(input('Digite a quantidade de pranchas:'))
           lista_pranchas = []
 
@@ -194,7 +194,7 @@ TOTAL GANHO POR {WIN.nome}:[R${WIN.total_ganho()}]
           string_resp += f'''Maior idade: {maior_idade}
 Menor idade: {menor_idade}'''
         except:
-          print('Nome de campeonato inválido.')
+          print('Nome de campeonato inválido')
       print(string_resp)
 
 
