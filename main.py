@@ -173,12 +173,15 @@ TOTAL GANHO POR {WIN.nome}:[R${WIN.total_ganho()}]
       campeonatos_ganhos = ''
       string_resp = 'Nenhum campeonato foi ganho.'
       nome = input('Digite o nome do surfista: ')
-      surfista = encontre_surfista(nome, lst_surfistas)
+      try:
+        surfista = encontre_surfista(nome, lst_surfistas)
 
-      for i in surfista.lst_campeonato:
-        if(i.campeao == surfista):
-          string_resp = string_resp.replace('Nenhum campeonato foi ganho.', '')
-          campeonatos_ganhos += f'{i} '
+        for i in surfista.lst_campeonato:
+          if(i.campeao == surfista):
+            string_resp = string_resp.replace('Nenhum campeonato foi ganho.', '')
+            campeonatos_ganhos += f'{i}\n '
+      except:
+        print('Nome inválido')
 
       if(campeonatos_ganhos != ''):
         try:
@@ -187,21 +190,25 @@ TOTAL GANHO POR {WIN.nome}:[R${WIN.total_ganho()}]
           camp = encontre_campeonato(nome_camp, campeonatos)
           maior_idade = camp.maior_idade()
           menor_idade = camp.menor_idade()
+
+          string_resp += f'''Maior idade: {maior_idade}
+Menor idade: {menor_idade}'''
         except:
           print('Nome de campeonato inválido.')
-
-        string_resp += f'''Maior idade: {maior_idade}
-Menor idade: {menor_idade}'''
       print(string_resp)
-    
+
 
     elif(flag == '8'):
-      for i in range(len(campeonatos)):
-        print(f'{i} - {campeonatos[i].nome}')
+      try:
+        for i in range(len(campeonatos)):
+          print(f'{i} - {campeonatos[i].nome}')
 
-      escolha = int(input('\nDigite o número referente ao campeonato desejado: '))
-      print(f'{campeonatos[escolha].registro_campeonato()}')
-
+        escolha = int(input('\nDigite o número referente ao campeonato desejado: '))
+        print(f'{campeonatos[escolha].registro_campeonato()}')
+      except IndexError:
+        print('O campeonato digitado não existe')
+      except:
+        print('O campeonato digitado ainda não foi encerrado.')
 
   resp = input('Deseja cadastrar um novo Campeonato? ').upper()
   
