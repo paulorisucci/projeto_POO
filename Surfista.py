@@ -44,6 +44,11 @@ class Surfista:
         if c not in self._campeonatos:
             self._campeonatos.append(c)
 
+    def rm_campeonato(self, c):
+        for i in range(len(self._campeonatos)):
+            if self._campeonatos[i] == c:
+                self._campeonatos.pop(i)
+
     def add_premio(self, premio):
       self._total_ganho += premio
 

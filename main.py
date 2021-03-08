@@ -47,7 +47,7 @@ lst_surfistas = [s1, s2]
 cx = Campeonato('CAMPEONATO ANTERIOR', praia0, 10000, [s1, s2], s2)
 campeonatos.append(cx)
 
-c1 = Campeonato('THE GREAT CHAMPIONSHIP OF SURF', praia1, 200000,lst_surfistas)
+c1 = Campeonato('THE GREAT CHAMPIONSHIP OF SURF', praia1, 200000,[s1, s2])
 campeonatos.append(c1)
 
 
@@ -70,6 +70,7 @@ while resp != 'N' and resp != 'NÃO':
           6 - PRANCHAS DOS SURFISTAS
           7 - MAIOR E MENOR IDADE
           8 - REGISTRO DE CAMPEONATOS
+          9 - REMOVER SURFISTA
           0 - SAIR\n''')
 
 
@@ -210,8 +211,20 @@ Menor idade: {menor_idade}'''
       except:
         print('O campeonato digitado ainda não foi encerrado.')
 
+
+    elif (flag == '9'):
+      lst_atual = ''
+      nome = input('Digite o nome do surfista a ser removido do campeonato: ')
+      print(c1.remover_surfista(nome))
+      print(f'Lista atual de surfistas: ')
+
+
+      for i in c1.surfistas:
+        lst_atual += f'{i.nome}\n'
+      print(lst_atual)
+
   resp = input('Deseja cadastrar um novo Campeonato? ').upper()
-  
+
   if(resp == 'S'or resp == "SIM"):
     nome_camp = input('Digite o nome do campeonato: ').title()
     nome_praia = input(f'Digite em qual praia será realizado ({praia0.nome}, {praia1.nome}, {praia2.nome}:\n ').title()

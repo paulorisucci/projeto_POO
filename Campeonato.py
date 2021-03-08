@@ -59,6 +59,12 @@ class Campeonato:
       self._surfistas.append(novo_surfista)
       novo_surfista.add_campeonato(self)
 
+  def remover_surfista(self, nome):
+      for s in range(len(self._surfistas)):
+          if(self._surfistas[s].nome == nome):
+              self._surfistas[s].rm_campeonato(self)
+              self._surfistas.pop(s)
+              return 'Surfista removido.'
 
   def menor_idade(self):
     menor = self._surfistas[0].idade
