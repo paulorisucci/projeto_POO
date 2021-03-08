@@ -39,15 +39,16 @@ lst_paises = [EUA, AUSTRALIA]
 
 pr1 = Prancha('Firewire', 2.1, 'Vermelho e branco', 1500, AUSTRALIA)
 pr2 = Prancha('Lost', 2.34, "Azul e verde", 1430.0, EUA)
+pr3 = Prancha('Lost', 2.5, "Vermelho", 1500, EUA)
 
 s1 = Surfista('Paulo Elias', 20, [pr1, pr2])
-s2 = Surfista('Pedrinho', 19, [pr1])
+s2 = Surfista('Pedrinho', 19, [pr3])
 lst_surfistas = [s1, s2]
 
 cx = Campeonato('CAMPEONATO ANTERIOR', praia0, 10000, [s1, s2], s2)
 campeonatos.append(cx)
 
-c1 = Campeonato('THE GREAT CHAMPIONSHIP OF SURF', praia1, 200000,[s1, s2])
+c1 = Campeonato('THE GREAT CHAMPIONSHIP OF SURF', praia1, 200000,lst_surfistas)
 campeonatos.append(c1)
 
 
@@ -228,11 +229,15 @@ Menor idade: {menor_idade}'''
   if(resp == 'S'or resp == "SIM"):
     nome_camp = input('Digite o nome do campeonato: ').title()
     nome_praia = input(f'Digite em qual praia será realizado ({praia0.nome}, {praia1.nome}, {praia2.nome}:\n ').title()
-    
-    praia_camp = encontre_praia(nome_praia, praias)
-    premio = float(input('Digite o prêmio: '))
-    c1 = Campeonato(nome_camp, praia_camp, premio, lst_surfistas)
-    campeonatos.append(c1)
 
+    try:
+      praia_camp = encontre_praia(nome_praia, praias)
+      premio = float(input('Digite o prêmio: '))
+      c1 = Campeonato(nome_camp, praia_camp, premio, lst_surfistas)
+      campeonatos.append(c1)
+    except ValueError:
+      print('Valor do registro inválido.')
+    except:
+      print('Ocorreu algum erro.')
 
 print('Fim do programa.')

@@ -65,6 +65,7 @@ class Campeonato:
               self._surfistas[s].rm_campeonato(self)
               self._surfistas.pop(s)
               return 'Surfista removido.'
+      return 'Nenhum surfista foi removido.'
 
   def menor_idade(self):
     menor = self._surfistas[0].idade
